@@ -1,0 +1,2423 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/draper14/Purdue-ME-239-Homework-Projects/blob/main/lecture03\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "-PiBhZiMQk69"
+      },
+      "source": [
+        "(lecture03:homework)=\n",
+        "# Homework 3\n",
+        "\n",
+        "+ Type your name and email in the \"Student details\" section below.\n",
+        "+ Develop the code and generate the figures you need to solve the problems using this notebook.\n",
+        "+ For the answers that require a mathematical proof or derivation you can either:\n",
+        "    \n",
+        "    - Type the answer using the built-in latex capabilities. In this case, simply export the notebook as a pdf and upload it on gradescope; or\n",
+        "    - You can print the notebook (after you are done with all the code), write your answers by hand, scan, turn your response to a single pdf, and upload on gradescope.\n",
+        "\n",
+        "+ The total homework points are 100. Please note that the problems are not weighed equally.\n",
+        "\n",
+        "```{note}\n",
+        "+ This is due before the beginning of the next lecture.\n",
+        "+ Please match all the pages corresponding to each of the questions when you submit on gradescope.\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "wMoU0mbLQk6_"
+      },
+      "source": [
+        "## Student details\n",
+        "\n",
+        "+ **First Name:** Christopher\n",
+        "+ **Last Name:** Draper\n",
+        "+ **Email:** draper14@purdue.edu"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "LtGD5sroQk6_"
+      },
+      "source": [
+        "(lecture03:homework:problem1)=\n",
+        "## Problem 1 - Playing with matrices\n",
+        "\n",
+        "Write Python code that constructs the 90-degree rotation matrix in 2D:\n",
+        "\n",
+        "$$\n",
+        "A = \\begin{bmatrix}\n",
+        "    \\cos(\\pi/2) &  -\\sin(\\pi/2) \\\\\n",
+        "    \\sin(\\pi/2) & \\cos(\\pi/2)\n",
+        "\\end{bmatrix}\n",
+        "$$"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "oSq0NucDQk7A",
+        "outputId": "535865b1-77de-48de-ae40-3f7456a7716b"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[ 0, -1],\n",
+              "       [ 1,  0]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 19
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "import numpy as np\n",
+        "import math\n",
+        "#A=np.zeros((2,2))\n",
+        "#A[0]=[round(math.cos(math.pi/2),7), round(-math.sin(math.pi/2),7)]\n",
+        "A=np.array([[0,-1],[1,0]])\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "GnA3_FCAQk7A"
+      },
+      "source": [
+        "Verify that the matrix $A$ rotates the vector $x=\\begin{bmatrix} 1 \\\\ 0 \\end{bmatrix}$ by 90 degrees counterclockwise. That is, $A x = \\begin{bmatrix} 0 \\\\ 1 \\end{bmatrix}$."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yN1H31osQk7B",
+        "outputId": "97ba147f-dccc-45c3-b488-b6122b971d32"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[0],\n",
+              "       [1]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 23
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "x=np.array([[1],[0]])\n",
+        "ax = A.dot(x)\n",
+        "ax"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4NbW51RjQk7B"
+      },
+      "source": [
+        "Create the matrix:\n",
+        "\n",
+        "$$\n",
+        "B = A\\cdot A\n",
+        "$$"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Zu9bHBDcQk7C",
+        "outputId": "98eb866a-31b5-4e47-9668-f742e132f853"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[[-1  0]\n",
+            " [ 0 -1]]\n"
+          ]
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "#.dot acts as matrix multiplicaiton between two matrices in python (same function as A@A).\n",
+        "#I'm assuming this isn't asking for a element-wise multiplicaiton of course.\n",
+        "B=A.dot(A)\n",
+        "print(B)\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4HK7RdeLQk7C"
+      },
+      "source": [
+        "Is $B$ a rotation matrix? What is the effect of $B$ on the vector $x$? Hint: To verify that $B$ is a rotation matrix, you need to check that $B^T\\cdot B = I$ (i.e., that $B$ is orthogonal) and that the determinant of $B$ is 1. You can use the ``np.linalg.det()`` function to compute the determinant of a matrix."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VFxd4a2dQk7D",
+        "outputId": "33c9535e-07d4-4e44-851c-908544c7cd84"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[[-1]\n",
+            " [ 0]]\n",
+            "[[1 0]\n",
+            " [0 1]]\n",
+            "1.0\n"
+          ]
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "bx = B.dot(x)\n",
+        "print(bx)#yes a rotation, x was just negated which makes sense because B is the negative unit matrix, it's a 180 degree reflection.\n",
+        "print(B.T@B)# yes this equals I\n",
+        "print(np.linalg.det(B)) #yes det(B)=1"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "kaj3K8fZQk7D"
+      },
+      "source": [
+        "Apply the matrix $B$ to the vector $x$ and verify that it rotates the vector by 180 degrees counterclockwise."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "yfdBf7vmQk7D",
+        "outputId": "84bc3f4b-fc76-4709-aa65-194fedd27d79"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[-1],\n",
+              "       [ 0]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 35
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "bx = B.dot(x)\n",
+        "bx"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "-GfkI749Qk7D"
+      },
+      "source": [
+        "If you perform 90 degree rotation 4 times, what is the effect of the resulting matrix on the vector $x$? Verify your answer by showing that multiplying $A$ by itself 4 times results in the identity matrix."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Y3DgvpVuQk7D",
+        "outputId": "1ecf58fb-9cfe-48ce-c9b9-bf34b9795297"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([[1, 0],\n",
+              "       [0, 1]])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 39
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "A@A@A@A"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "WCpvxlc1Qk7E"
+      },
+      "source": [
+        "(lecture03:homework:problem2)=\n",
+        "## Problem 2 - Real data set from high-performance buildings\n",
+        "\n",
+        "In this problem you are going to use the `pandas` library to analyze a real dataset collected as part of the NSF-funded project [Sociotechnical Systems to Enable Energy-Aware Residential Communities](https://www.energyawarecommunities.org/).\n",
+        "You can find the raw dataset [here](https://github.com/PurdueMechanicalEngineering/me-239-intro-to-data-science/raw/master/data/temperature_raw.xlsx).\n",
+        "\n",
+        "Feel free to download it and open it up in Excel.\n",
+        "\n",
+        "### Uploading data files to Google Colab\n",
+        "\n",
+        "The first thing we are going to do in this problem is make this file accessible from this notebook. We could simply use the ``download()`` function that I introduced in the lecture. I will put the code at the very last block for your convenience.\n",
+        "However, I still want to show you how you can upload your own data. Here we go.\n",
+        "\n",
+        "Go to your Google Drive. We need to select a folder to put the files. To keep things simple, let's just dump everything in \"My Drive/Colab Notebooks,\" i.e., the same folder that contains the copy of this Jupyter notebook which you should have already made  Once you have entered this folder in your Google Drive (just double click on it), drag and drop the `temperature_raw.xlsx` file in there.\n",
+        "\n",
+        "Now we need to make the Google Drive visible from this computational session. We do this by mounting the drive. You need to run this code and follow the instructions:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 6,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 52
+        },
+        "id": "Nl0ic3reQk7E",
+        "outputId": "08c44a31-462f-4b17-b884-30a7c79df8ce"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "\"# The following code does not run unless you are running the notebook on Google Colab\\nfrom google.colab import drive\\ndrive.mount('/content/drive')\""
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            }
+          },
+          "metadata": {},
+          "execution_count": 6
+        }
+      ],
+      "source": [
+        "\n",
+        "'''# The following code does not run unless you are running the notebook on Google Colab\n",
+        "from google.colab import drive\n",
+        "drive.mount('/content/drive')'''"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "3P88W8BgQk7E"
+      },
+      "source": [
+        "Finally, change directories so that the data files are in the current working directory:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 10,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 0
+        },
+        "id": "wCofK2cjQk7E",
+        "outputId": "0c706be0-f8ec-4603-9d81-9426fad8387f"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "/content/drive/MyDrive/Colab Notebooks\n",
+            "/content/drive/My Drive/Colab Notebooks\n",
+            "/content/drive/My Drive/Colab Notebooks\n",
+            "phys172_lab01_draper14.ipynb  temperature_raw.xlsx\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Only if you are running on Google Colab...\n",
+        "# Print working directory before changing\n",
+        "!pwd\n",
+        "# Change to the desired directory on Google drive\n",
+        "%cd \"/content/drive/My Drive/Colab Notebooks\"\n",
+        "# Print working directory after changing\n",
+        "!pwd\n",
+        "# List the contents of the directory - Make sure it does contain the files we want:\n",
+        "!ls\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "dFKzhRyjQk7E"
+      },
+      "source": [
+        "Now you should have access to the file and you can **skip the next code block.**\n",
+        "If you tried and something went wrong, simply run the code block below and it will put the data file in the right location for you."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 8,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 0
+        },
+        "id": "ITO0vY-_Qk7E",
+        "outputId": "8a23616d-7c50-417a-f2f3-ff4d6ff08eea"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n",
+            "                                 Dload  Upload   Total   Spent    Left  Speed\n",
+            "100  277k  100  277k    0     0   875k      0 --:--:-- --:--:-- --:--:--  876k\n"
+          ]
+        }
+      ],
+      "source": [
+        "!curl -O https://raw.githubusercontent.com/PurdueMechanicalEngineering/me-239-intro-to-data-science/master/data/temperature_raw.xlsx"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from google.colab import drive\n",
+        "drive.mount('/content/drive')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 0
+        },
+        "id": "F7O_ZP2kBm0T",
+        "outputId": "930919b3-6a63-41c5-de33-6351a219a2ad"
+      },
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(\"/content/drive\", force_remount=True).\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "31IP0xcxQk7F"
+      },
+      "source": [
+        "### Loading Excel files\n",
+        "\n",
+        "Use the ``pd.read_excel`` function to read the `temperature_raw.xlsx` file.\n",
+        "Name the data frame you read `df`."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 14,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 423
+        },
+        "id": "mbdqqgxHQk7F",
+        "outputId": "ec0225aa-2ddb-47c2-d10f-488d292f1192"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "     household        date  score      t_out     t_unit        hvac\n",
+              "0           a1  2018-01-07  100.0   4.283373  66.693229  246.473231\n",
+              "1          a10  2018-01-07  100.0   4.283373  66.356134    5.492116\n",
+              "2          a11  2018-01-07   58.0   4.283373  71.549132  402.094327\n",
+              "3          a12  2018-01-07   64.0   4.283373  73.429514  211.692244\n",
+              "4          a13  2018-01-07  100.0   4.283373  63.923937    0.850536\n",
+              "...        ...         ...    ...        ...        ...         ...\n",
+              "5645       c46  2020-02-25    NaN  43.642388        NaN         NaN\n",
+              "5646       c47  2020-02-25   97.0  43.642388  68.603287    5.339391\n",
+              "5647       c48  2020-02-25   92.0  43.642388  73.429239   18.040078\n",
+              "5648       c49  2020-02-25    NaN  43.642388        NaN         NaN\n",
+              "5649       c50  2020-02-25   59.0  43.642388  77.716955   14.405155\n",
+              "\n",
+              "[5650 rows x 6 columns]"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-c11775d8-2986-4194-84ee-7657fae170ea\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>household</th>\n",
+              "      <th>date</th>\n",
+              "      <th>score</th>\n",
+              "      <th>t_out</th>\n",
+              "      <th>t_unit</th>\n",
+              "      <th>hvac</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>a1</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>66.693229</td>\n",
+              "      <td>246.473231</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>a10</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>66.356134</td>\n",
+              "      <td>5.492116</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>a11</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>58.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>71.549132</td>\n",
+              "      <td>402.094327</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>a12</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>64.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>73.429514</td>\n",
+              "      <td>211.692244</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>a13</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>63.923937</td>\n",
+              "      <td>0.850536</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>...</th>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5645</th>\n",
+              "      <td>c46</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5646</th>\n",
+              "      <td>c47</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>97.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>68.603287</td>\n",
+              "      <td>5.339391</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5647</th>\n",
+              "      <td>c48</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>92.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>73.429239</td>\n",
+              "      <td>18.040078</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5648</th>\n",
+              "      <td>c49</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5649</th>\n",
+              "      <td>c50</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>59.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>77.716955</td>\n",
+              "      <td>14.405155</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "<p>5650 rows × 6 columns</p>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-c11775d8-2986-4194-84ee-7657fae170ea')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-c11775d8-2986-4194-84ee-7657fae170ea button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-c11775d8-2986-4194-84ee-7657fae170ea');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "  <div id=\"id_2e66f88c-5cd5-4d3a-a64c-2f542c993182\">\n",
+              "    <style>\n",
+              "      .colab-df-generate {\n",
+              "        background-color: #E8F0FE;\n",
+              "        border: none;\n",
+              "        border-radius: 50%;\n",
+              "        cursor: pointer;\n",
+              "        display: none;\n",
+              "        fill: #1967D2;\n",
+              "        height: 32px;\n",
+              "        padding: 0 0 0 0;\n",
+              "        width: 32px;\n",
+              "      }\n",
+              "\n",
+              "      .colab-df-generate:hover {\n",
+              "        background-color: #E2EBFA;\n",
+              "        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "        fill: #174EA6;\n",
+              "      }\n",
+              "\n",
+              "      [theme=dark] .colab-df-generate {\n",
+              "        background-color: #3B4455;\n",
+              "        fill: #D2E3FC;\n",
+              "      }\n",
+              "\n",
+              "      [theme=dark] .colab-df-generate:hover {\n",
+              "        background-color: #434B5C;\n",
+              "        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "        fill: #FFFFFF;\n",
+              "      }\n",
+              "    </style>\n",
+              "    <button class=\"colab-df-generate\" onclick=\"generateWithVariable('df')\"\n",
+              "            title=\"Generate code using this dataframe.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
+              "       width=\"24px\">\n",
+              "    <path d=\"M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "    <script>\n",
+              "      (() => {\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#id_2e66f88c-5cd5-4d3a-a64c-2f542c993182 button.colab-df-generate');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      buttonEl.onclick = () => {\n",
+              "        google.colab.notebook.generateWithVariable('df');\n",
+              "      }\n",
+              "      })();\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "variable_name": "df",
+              "summary": "{\n  \"name\": \"df\",\n  \"rows\": 5650,\n  \"fields\": [\n    {\n      \"column\": \"household\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 50,\n        \"samples\": [\n          \"a7\",\n          \"c40\",\n          \"b31\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"date\",\n      \"properties\": {\n        \"dtype\": \"object\",\n        \"num_unique_values\": 113,\n        \"samples\": [\n          \"2019-07-21\",\n          \"2018-02-04\",\n          \"2018-10-14\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"score\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 21.643790941114354,\n        \"min\": 0.0,\n        \"max\": 100.0,\n        \"num_unique_values\": 101,\n        \"samples\": [\n          3.0,\n          66.0,\n          46.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_out\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 19.006198961720035,\n        \"min\": 4.28337310850414,\n        \"max\": 82.8196180555544,\n        \"num_unique_values\": 113,\n        \"samples\": [\n          82.8196180555544,\n          30.0657738095223,\n          63.2892361111073\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_unit\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 2.608969240419225,\n        \"min\": 63.9239365079362,\n        \"max\": 81.9412946428575,\n        \"num_unique_values\": 4887,\n        \"samples\": [\n          78.4870783730156,\n          73.3319444444445,\n          75.4255952380953\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"hvac\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 95.90105902222942,\n        \"min\": 0.0,\n        \"max\": 693.526701111111,\n        \"num_unique_values\": 4535,\n        \"samples\": [\n          77.7697430555556,\n          95.7836694444444,\n          6.58784611111111\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
+            }
+          },
+          "metadata": {},
+          "execution_count": 14
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "df = pd.read_excel(\"temperature_raw.xlsx\")\n",
+        "df"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "7ECjlcNzQk7F"
+      },
+      "source": [
+        "### Questions\n",
+        "\n",
+        "Now that you have access to the data frame, let's explore it.\n",
+        "Answer the following questions.\n",
+        "\n",
+        "+ Print the first 10 rows of the data frame `df` using the [df.head()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) method."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 15,
+      "metadata": {
+        "id": "K8NzVYzDQk7F",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 363
+        },
+        "outputId": "2791bbdb-1fec-4eea-b18f-268c4c3f6c9d"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "  household        date  score     t_out     t_unit        hvac\n",
+              "0        a1  2018-01-07  100.0  4.283373  66.693229  246.473231\n",
+              "1       a10  2018-01-07  100.0  4.283373  66.356134    5.492116\n",
+              "2       a11  2018-01-07   58.0  4.283373  71.549132  402.094327\n",
+              "3       a12  2018-01-07   64.0  4.283373  73.429514  211.692244\n",
+              "4       a13  2018-01-07  100.0  4.283373  63.923937    0.850536\n",
+              "5       a14  2018-01-07    NaN  4.283373        NaN         NaN\n",
+              "6       a15  2018-01-07    NaN  4.283373        NaN         NaN\n",
+              "7       a16  2018-01-07   56.0  4.283373  66.908970  529.843389\n",
+              "8        a2  2018-01-07   38.0  4.283373  76.063194  556.206108\n",
+              "9        a3  2018-01-07   50.0  4.283373  75.677199  508.592283"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-e6c1306e-d0a2-4283-8ba3-eb3e2b3b50af\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>household</th>\n",
+              "      <th>date</th>\n",
+              "      <th>score</th>\n",
+              "      <th>t_out</th>\n",
+              "      <th>t_unit</th>\n",
+              "      <th>hvac</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>a1</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>66.693229</td>\n",
+              "      <td>246.473231</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>a10</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>66.356134</td>\n",
+              "      <td>5.492116</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>a11</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>58.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>71.549132</td>\n",
+              "      <td>402.094327</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>a12</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>64.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>73.429514</td>\n",
+              "      <td>211.692244</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>a13</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>63.923937</td>\n",
+              "      <td>0.850536</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5</th>\n",
+              "      <td>a14</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>6</th>\n",
+              "      <td>a15</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>7</th>\n",
+              "      <td>a16</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>56.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>66.908970</td>\n",
+              "      <td>529.843389</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>8</th>\n",
+              "      <td>a2</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>38.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>76.063194</td>\n",
+              "      <td>556.206108</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>9</th>\n",
+              "      <td>a3</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>50.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>75.677199</td>\n",
+              "      <td>508.592283</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-e6c1306e-d0a2-4283-8ba3-eb3e2b3b50af')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-e6c1306e-d0a2-4283-8ba3-eb3e2b3b50af button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-e6c1306e-d0a2-4283-8ba3-eb3e2b3b50af');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "variable_name": "df",
+              "summary": "{\n  \"name\": \"df\",\n  \"rows\": 5650,\n  \"fields\": [\n    {\n      \"column\": \"household\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 50,\n        \"samples\": [\n          \"a7\",\n          \"c40\",\n          \"b31\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"date\",\n      \"properties\": {\n        \"dtype\": \"object\",\n        \"num_unique_values\": 113,\n        \"samples\": [\n          \"2019-07-21\",\n          \"2018-02-04\",\n          \"2018-10-14\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"score\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 21.643790941114354,\n        \"min\": 0.0,\n        \"max\": 100.0,\n        \"num_unique_values\": 101,\n        \"samples\": [\n          3.0,\n          66.0,\n          46.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_out\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 19.006198961720035,\n        \"min\": 4.28337310850414,\n        \"max\": 82.8196180555544,\n        \"num_unique_values\": 113,\n        \"samples\": [\n          82.8196180555544,\n          30.0657738095223,\n          63.2892361111073\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_unit\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 2.608969240419225,\n        \"min\": 63.9239365079362,\n        \"max\": 81.9412946428575,\n        \"num_unique_values\": 4887,\n        \"samples\": [\n          78.4870783730156,\n          73.3319444444445,\n          75.4255952380953\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"hvac\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 95.90105902222942,\n        \"min\": 0.0,\n        \"max\": 693.526701111111,\n        \"num_unique_values\": 4535,\n        \"samples\": [\n          77.7697430555556,\n          95.7836694444444,\n          6.58784611111111\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
+            }
+          },
+          "metadata": {},
+          "execution_count": 15
+        }
+      ],
+      "source": [
+        "# Your code here\n",
+        "df.head(10)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "giR7SfTEQk7F"
+      },
+      "source": [
+        "+ Print the last 10 rows of the data frame `df` using the [df.tail()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.tail.html) method."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 16,
+      "metadata": {
+        "id": "UHksiQjYQk7F",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 363
+        },
+        "outputId": "e709a06b-a10a-4326-cb6d-51b34397c828"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "     household        date  score      t_out     t_unit       hvac\n",
+              "5640       c41  2020-02-25   84.0  43.642388  70.929066  32.371903\n",
+              "5641       c42  2020-02-25   45.0  43.642388  76.235294   0.000000\n",
+              "5642       c43  2020-02-25   70.0  43.642388  78.302768  15.952602\n",
+              "5643       c44  2020-02-25   59.0  43.642388  76.494637  19.135139\n",
+              "5644       c45  2020-02-25   87.0  43.642388  71.165052  30.794281\n",
+              "5645       c46  2020-02-25    NaN  43.642388        NaN        NaN\n",
+              "5646       c47  2020-02-25   97.0  43.642388  68.603287   5.339391\n",
+              "5647       c48  2020-02-25   92.0  43.642388  73.429239  18.040078\n",
+              "5648       c49  2020-02-25    NaN  43.642388        NaN        NaN\n",
+              "5649       c50  2020-02-25   59.0  43.642388  77.716955  14.405155"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-15ef7ed8-d62a-4985-bf2d-30bcf6909f06\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>household</th>\n",
+              "      <th>date</th>\n",
+              "      <th>score</th>\n",
+              "      <th>t_out</th>\n",
+              "      <th>t_unit</th>\n",
+              "      <th>hvac</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>5640</th>\n",
+              "      <td>c41</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>84.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>70.929066</td>\n",
+              "      <td>32.371903</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5641</th>\n",
+              "      <td>c42</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>45.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>76.235294</td>\n",
+              "      <td>0.000000</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5642</th>\n",
+              "      <td>c43</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>70.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>78.302768</td>\n",
+              "      <td>15.952602</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5643</th>\n",
+              "      <td>c44</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>59.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>76.494637</td>\n",
+              "      <td>19.135139</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5644</th>\n",
+              "      <td>c45</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>87.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>71.165052</td>\n",
+              "      <td>30.794281</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5645</th>\n",
+              "      <td>c46</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5646</th>\n",
+              "      <td>c47</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>97.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>68.603287</td>\n",
+              "      <td>5.339391</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5647</th>\n",
+              "      <td>c48</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>92.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>73.429239</td>\n",
+              "      <td>18.040078</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5648</th>\n",
+              "      <td>c49</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>NaN</td>\n",
+              "      <td>NaN</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5649</th>\n",
+              "      <td>c50</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>59.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>77.716955</td>\n",
+              "      <td>14.405155</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-15ef7ed8-d62a-4985-bf2d-30bcf6909f06')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-15ef7ed8-d62a-4985-bf2d-30bcf6909f06 button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-15ef7ed8-d62a-4985-bf2d-30bcf6909f06');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "repr_error": "0"
+            }
+          },
+          "metadata": {},
+          "execution_count": 16
+        }
+      ],
+      "source": [
+        "# Your code here\n",
+        "df.tail(10)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "fUeSOS_7Qk7F"
+      },
+      "source": [
+        "+ Print summary statistics of the data set using the [df.describe()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html) method."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 17,
+      "metadata": {
+        "id": "i4-v09qIQk7F",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 300
+        },
+        "outputId": "0b4da75a-6cbe-4ebf-8084-83469405da6f"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "             score        t_out       t_unit         hvac\n",
+              "count  4887.000000  5650.000000  4887.000000  4887.000000\n",
+              "mean     74.372826    53.084123    74.172698    81.741860\n",
+              "std      21.643791    19.006199     2.608969    95.901059\n",
+              "min       0.000000     4.283373    63.923937     0.000000\n",
+              "25%      60.000000    37.522495    72.383504    18.321238\n",
+              "50%      79.000000    48.916667    74.178348    51.974687\n",
+              "75%      92.000000    73.079266    76.063591   110.487709\n",
+              "max     100.000000    82.819618    81.941295   693.526701"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-0e0de131-85fe-4b0a-b6de-2a4760740a8e\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>score</th>\n",
+              "      <th>t_out</th>\n",
+              "      <th>t_unit</th>\n",
+              "      <th>hvac</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>count</th>\n",
+              "      <td>4887.000000</td>\n",
+              "      <td>5650.000000</td>\n",
+              "      <td>4887.000000</td>\n",
+              "      <td>4887.000000</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>mean</th>\n",
+              "      <td>74.372826</td>\n",
+              "      <td>53.084123</td>\n",
+              "      <td>74.172698</td>\n",
+              "      <td>81.741860</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>std</th>\n",
+              "      <td>21.643791</td>\n",
+              "      <td>19.006199</td>\n",
+              "      <td>2.608969</td>\n",
+              "      <td>95.901059</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>min</th>\n",
+              "      <td>0.000000</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>63.923937</td>\n",
+              "      <td>0.000000</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>25%</th>\n",
+              "      <td>60.000000</td>\n",
+              "      <td>37.522495</td>\n",
+              "      <td>72.383504</td>\n",
+              "      <td>18.321238</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>50%</th>\n",
+              "      <td>79.000000</td>\n",
+              "      <td>48.916667</td>\n",
+              "      <td>74.178348</td>\n",
+              "      <td>51.974687</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>75%</th>\n",
+              "      <td>92.000000</td>\n",
+              "      <td>73.079266</td>\n",
+              "      <td>76.063591</td>\n",
+              "      <td>110.487709</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>max</th>\n",
+              "      <td>100.000000</td>\n",
+              "      <td>82.819618</td>\n",
+              "      <td>81.941295</td>\n",
+              "      <td>693.526701</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-0e0de131-85fe-4b0a-b6de-2a4760740a8e')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-0e0de131-85fe-4b0a-b6de-2a4760740a8e button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-0e0de131-85fe-4b0a-b6de-2a4760740a8e');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "summary": "{\n  \"name\": \"df\",\n  \"rows\": 8,\n  \"fields\": [\n    {\n      \"column\": \"score\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 1706.5933985345757,\n        \"min\": 0.0,\n        \"max\": 4887.0,\n        \"num_unique_values\": 8,\n        \"samples\": [\n          74.37282586453857,\n          79.0,\n          4887.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_out\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 1981.6482307478539,\n        \"min\": 4.28337310850414,\n        \"max\": 5650.0,\n        \"num_unique_values\": 8,\n        \"samples\": [\n          53.08412279033879,\n          48.916666666662,\n          5650.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_unit\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 1705.514772311129,\n        \"min\": 2.608969240419225,\n        \"max\": 4887.0,\n        \"num_unique_values\": 8,\n        \"samples\": [\n          74.17269751981581,\n          74.1783482142857,\n          4887.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"hvac\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 1689.7157783131129,\n        \"min\": 0.0,\n        \"max\": 4887.0,\n        \"num_unique_values\": 8,\n        \"samples\": [\n          81.74186003330834,\n          51.9746869444444,\n          4887.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
+            }
+          },
+          "metadata": {},
+          "execution_count": 17
+        }
+      ],
+      "source": [
+        "# Your code here\n",
+        "df.describe()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "20nG44laQk7F"
+      },
+      "source": [
+        "+ Notice that there is a column called \"date\", but pandas is not aware that this is actually a date.\n",
+        "Let's make it aware of that using the [pd.to_datetime()](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html) function."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 18,
+      "metadata": {
+        "id": "esgPc_sMQk7G"
+      },
+      "outputs": [],
+      "source": [
+        "df.date = pd.to_datetime(df['date'], format='%Y-%m-%d')"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "otQ9mo_xQk7G"
+      },
+      "source": [
+        "+ Count how many NaN values you have on each column. Hint: Use the [df.isna()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isna.html) method to create a boolean array that is True for NaN values and False otherwise. Then, use the [sum()](https://numpy.org/doc/stable/reference/generated/numpy.sum.html) function to count the number of True values. True is equivalent to 1 and False is equivalent to 0."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 60,
+      "metadata": {
+        "id": "FnvmCxuhQk7G",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 272
+        },
+        "outputId": "9d3fe32b-8a83-45ee-a111-23589e449d67"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "household      0\n",
+              "date           0\n",
+              "score        763\n",
+              "t_out          0\n",
+              "t_unit       763\n",
+              "hvac         763\n",
+              "dtype: int64"
+            ],
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>0</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>household</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>date</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>score</th>\n",
+              "      <td>763</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>t_out</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>t_unit</th>\n",
+              "      <td>763</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>hvac</th>\n",
+              "      <td>763</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div><br><label><b>dtype:</b> int64</label>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 60
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "df.isna().sum()\n",
+        "#for i in range(df.shape[1]-1):\n",
+        "  #print(df.iloc[:,i+1])"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "3fhskKpgQk7G"
+      },
+      "source": [
+        "+ Clean the data set by dropping all NaN values. Call the cleaned data `df_clean`. Use the [df.dropna()](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html) method."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 62,
+      "metadata": {
+        "id": "EUeQLXWdQk7G",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 423
+        },
+        "outputId": "b255c688-0776-45c6-b643-5d151ae130a4"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "     household       date  score      t_out     t_unit        hvac\n",
+              "0           a1 2018-01-07  100.0   4.283373  66.693229  246.473231\n",
+              "1          a10 2018-01-07  100.0   4.283373  66.356134    5.492116\n",
+              "2          a11 2018-01-07   58.0   4.283373  71.549132  402.094327\n",
+              "3          a12 2018-01-07   64.0   4.283373  73.429514  211.692244\n",
+              "4          a13 2018-01-07  100.0   4.283373  63.923937    0.850536\n",
+              "...        ...        ...    ...        ...        ...         ...\n",
+              "5643       c44 2020-02-25   59.0  43.642388  76.494637   19.135139\n",
+              "5644       c45 2020-02-25   87.0  43.642388  71.165052   30.794281\n",
+              "5646       c47 2020-02-25   97.0  43.642388  68.603287    5.339391\n",
+              "5647       c48 2020-02-25   92.0  43.642388  73.429239   18.040078\n",
+              "5649       c50 2020-02-25   59.0  43.642388  77.716955   14.405155\n",
+              "\n",
+              "[4887 rows x 6 columns]"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-7053bb55-5db5-4c14-bed6-06dba6e46d9c\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>household</th>\n",
+              "      <th>date</th>\n",
+              "      <th>score</th>\n",
+              "      <th>t_out</th>\n",
+              "      <th>t_unit</th>\n",
+              "      <th>hvac</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>a1</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>66.693229</td>\n",
+              "      <td>246.473231</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>a10</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>66.356134</td>\n",
+              "      <td>5.492116</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>a11</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>58.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>71.549132</td>\n",
+              "      <td>402.094327</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>a12</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>64.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>73.429514</td>\n",
+              "      <td>211.692244</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>a13</td>\n",
+              "      <td>2018-01-07</td>\n",
+              "      <td>100.0</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>63.923937</td>\n",
+              "      <td>0.850536</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>...</th>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "      <td>...</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5643</th>\n",
+              "      <td>c44</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>59.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>76.494637</td>\n",
+              "      <td>19.135139</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5644</th>\n",
+              "      <td>c45</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>87.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>71.165052</td>\n",
+              "      <td>30.794281</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5646</th>\n",
+              "      <td>c47</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>97.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>68.603287</td>\n",
+              "      <td>5.339391</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5647</th>\n",
+              "      <td>c48</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>92.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>73.429239</td>\n",
+              "      <td>18.040078</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5649</th>\n",
+              "      <td>c50</td>\n",
+              "      <td>2020-02-25</td>\n",
+              "      <td>59.0</td>\n",
+              "      <td>43.642388</td>\n",
+              "      <td>77.716955</td>\n",
+              "      <td>14.405155</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "<p>4887 rows × 6 columns</p>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-7053bb55-5db5-4c14-bed6-06dba6e46d9c')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-7053bb55-5db5-4c14-bed6-06dba6e46d9c button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-7053bb55-5db5-4c14-bed6-06dba6e46d9c');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "  <div id=\"id_8032425e-75a4-4904-aa79-e287c5a02041\">\n",
+              "    <style>\n",
+              "      .colab-df-generate {\n",
+              "        background-color: #E8F0FE;\n",
+              "        border: none;\n",
+              "        border-radius: 50%;\n",
+              "        cursor: pointer;\n",
+              "        display: none;\n",
+              "        fill: #1967D2;\n",
+              "        height: 32px;\n",
+              "        padding: 0 0 0 0;\n",
+              "        width: 32px;\n",
+              "      }\n",
+              "\n",
+              "      .colab-df-generate:hover {\n",
+              "        background-color: #E2EBFA;\n",
+              "        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "        fill: #174EA6;\n",
+              "      }\n",
+              "\n",
+              "      [theme=dark] .colab-df-generate {\n",
+              "        background-color: #3B4455;\n",
+              "        fill: #D2E3FC;\n",
+              "      }\n",
+              "\n",
+              "      [theme=dark] .colab-df-generate:hover {\n",
+              "        background-color: #434B5C;\n",
+              "        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "        fill: #FFFFFF;\n",
+              "      }\n",
+              "    </style>\n",
+              "    <button class=\"colab-df-generate\" onclick=\"generateWithVariable('df_clean')\"\n",
+              "            title=\"Generate code using this dataframe.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
+              "       width=\"24px\">\n",
+              "    <path d=\"M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "    <script>\n",
+              "      (() => {\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#id_8032425e-75a4-4904-aa79-e287c5a02041 button.colab-df-generate');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      buttonEl.onclick = () => {\n",
+              "        google.colab.notebook.generateWithVariable('df_clean');\n",
+              "      }\n",
+              "      })();\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "variable_name": "df_clean",
+              "summary": "{\n  \"name\": \"df_clean\",\n  \"rows\": 4887,\n  \"fields\": [\n    {\n      \"column\": \"household\",\n      \"properties\": {\n        \"dtype\": \"category\",\n        \"num_unique_values\": 50,\n        \"samples\": [\n          \"a9\",\n          \"c44\",\n          \"c35\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"date\",\n      \"properties\": {\n        \"dtype\": \"date\",\n        \"min\": \"2018-01-07 00:00:00\",\n        \"max\": \"2020-02-25 00:00:00\",\n        \"num_unique_values\": 113,\n        \"samples\": [\n          \"2019-07-21 00:00:00\",\n          \"2018-02-04 00:00:00\",\n          \"2018-10-14 00:00:00\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"score\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 21.643790941114354,\n        \"min\": 0.0,\n        \"max\": 100.0,\n        \"num_unique_values\": 101,\n        \"samples\": [\n          3.0,\n          66.0,\n          46.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_out\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 18.99231033428509,\n        \"min\": 4.28337310850414,\n        \"max\": 82.8196180555544,\n        \"num_unique_values\": 113,\n        \"samples\": [\n          82.8196180555544,\n          30.0657738095223,\n          63.2892361111073\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_unit\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 2.608969240419225,\n        \"min\": 63.9239365079362,\n        \"max\": 81.9412946428575,\n        \"num_unique_values\": 4887,\n        \"samples\": [\n          78.4870783730156,\n          73.3319444444445,\n          75.4255952380953\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"hvac\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 95.90105902222942,\n        \"min\": 0.0,\n        \"max\": 693.526701111111,\n        \"num_unique_values\": 4535,\n        \"samples\": [\n          77.7697430555556,\n          95.7836694444444,\n          6.58784611111111\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
+            }
+          },
+          "metadata": {},
+          "execution_count": 62
+        }
+      ],
+      "source": [
+        "df_clean = df.dropna()\n",
+        "df_clean"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "-WYxpqPUQk7G"
+      },
+      "source": [
+        "+ Verify that there are no NaN values in `df_clean`."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 64,
+      "metadata": {
+        "id": "HrI0geeDQk7G",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 272
+        },
+        "outputId": "7a469997-0678-42fe-8131-cee5e41559fc"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "household    0\n",
+              "date         0\n",
+              "score        0\n",
+              "t_out        0\n",
+              "t_unit       0\n",
+              "hvac         0\n",
+              "dtype: int64"
+            ],
+            "text/html": [
+              "<div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>0</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>household</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>date</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>score</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>t_out</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>t_unit</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>hvac</th>\n",
+              "      <td>0</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div><br><label><b>dtype:</b> int64</label>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 64
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "df_clean.isna().sum()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "V2mt2c8lQk7G"
+      },
+      "source": [
+        "+ How many unique households do we have and what are their unique names? Hint: Use the [df.unique()](https://pandas.pydata.org/docs/reference/api/pandas.unique.html) method."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 69,
+      "metadata": {
+        "id": "qiv3khyUQk7G",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 0
+        },
+        "outputId": "f610d634-c4d8-4c80-8338-7fd95776e1f6"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "50"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 69
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "len(df[\"household\"].unique())"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4rucCdzwQk7G"
+      },
+      "source": [
+        "+ Print summary statistics for your cleaned dataset."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 70,
+      "metadata": {
+        "id": "h2gsnRv6Qk7M",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 300
+        },
+        "outputId": "b4b445ec-3f1e-4795-efdb-3d7b65ed77c9"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "                                date        score        t_out       t_unit  \\\n",
+              "count                           4887  4887.000000  4887.000000  4887.000000   \n",
+              "mean   2019-01-28 10:29:05.856353536    74.372826    52.907260    74.172698   \n",
+              "min              2018-01-07 00:00:00     0.000000     4.283373    63.923937   \n",
+              "25%              2018-07-15 00:00:00    60.000000    37.522495    72.383504   \n",
+              "50%              2019-01-27 00:00:00    79.000000    48.916667    74.178348   \n",
+              "75%              2019-08-11 00:00:00    92.000000    73.079266    76.063591   \n",
+              "max              2020-02-25 00:00:00   100.000000    82.819618    81.941295   \n",
+              "std                              NaN    21.643791    18.992310     2.608969   \n",
+              "\n",
+              "              hvac  \n",
+              "count  4887.000000  \n",
+              "mean     81.741860  \n",
+              "min       0.000000  \n",
+              "25%      18.321238  \n",
+              "50%      51.974687  \n",
+              "75%     110.487709  \n",
+              "max     693.526701  \n",
+              "std      95.901059  "
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-d8da74e5-f796-4bb5-a23a-2273ee9a0869\" class=\"colab-df-container\">\n",
+              "    <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>date</th>\n",
+              "      <th>score</th>\n",
+              "      <th>t_out</th>\n",
+              "      <th>t_unit</th>\n",
+              "      <th>hvac</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>count</th>\n",
+              "      <td>4887</td>\n",
+              "      <td>4887.000000</td>\n",
+              "      <td>4887.000000</td>\n",
+              "      <td>4887.000000</td>\n",
+              "      <td>4887.000000</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>mean</th>\n",
+              "      <td>2019-01-28 10:29:05.856353536</td>\n",
+              "      <td>74.372826</td>\n",
+              "      <td>52.907260</td>\n",
+              "      <td>74.172698</td>\n",
+              "      <td>81.741860</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>min</th>\n",
+              "      <td>2018-01-07 00:00:00</td>\n",
+              "      <td>0.000000</td>\n",
+              "      <td>4.283373</td>\n",
+              "      <td>63.923937</td>\n",
+              "      <td>0.000000</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>25%</th>\n",
+              "      <td>2018-07-15 00:00:00</td>\n",
+              "      <td>60.000000</td>\n",
+              "      <td>37.522495</td>\n",
+              "      <td>72.383504</td>\n",
+              "      <td>18.321238</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>50%</th>\n",
+              "      <td>2019-01-27 00:00:00</td>\n",
+              "      <td>79.000000</td>\n",
+              "      <td>48.916667</td>\n",
+              "      <td>74.178348</td>\n",
+              "      <td>51.974687</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>75%</th>\n",
+              "      <td>2019-08-11 00:00:00</td>\n",
+              "      <td>92.000000</td>\n",
+              "      <td>73.079266</td>\n",
+              "      <td>76.063591</td>\n",
+              "      <td>110.487709</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>max</th>\n",
+              "      <td>2020-02-25 00:00:00</td>\n",
+              "      <td>100.000000</td>\n",
+              "      <td>82.819618</td>\n",
+              "      <td>81.941295</td>\n",
+              "      <td>693.526701</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>std</th>\n",
+              "      <td>NaN</td>\n",
+              "      <td>21.643791</td>\n",
+              "      <td>18.992310</td>\n",
+              "      <td>2.608969</td>\n",
+              "      <td>95.901059</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "    <div class=\"colab-df-buttons\">\n",
+              "\n",
+              "  <div class=\"colab-df-container\">\n",
+              "    <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-d8da74e5-f796-4bb5-a23a-2273ee9a0869')\"\n",
+              "            title=\"Convert this dataframe to an interactive table.\"\n",
+              "            style=\"display:none;\">\n",
+              "\n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\">\n",
+              "    <path d=\"M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z\"/>\n",
+              "  </svg>\n",
+              "    </button>\n",
+              "\n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-buttons div {\n",
+              "      margin-bottom: 4px;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "    <script>\n",
+              "      const buttonEl =\n",
+              "        document.querySelector('#df-d8da74e5-f796-4bb5-a23a-2273ee9a0869 button.colab-df-convert');\n",
+              "      buttonEl.style.display =\n",
+              "        google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "      async function convertToInteractive(key) {\n",
+              "        const element = document.querySelector('#df-d8da74e5-f796-4bb5-a23a-2273ee9a0869');\n",
+              "        const dataTable =\n",
+              "          await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                    [key], {});\n",
+              "        if (!dataTable) return;\n",
+              "\n",
+              "        const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "          '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "          + ' to learn more about interactive tables.';\n",
+              "        element.innerHTML = '';\n",
+              "        dataTable['output_type'] = 'display_data';\n",
+              "        await google.colab.output.renderOutput(dataTable, element);\n",
+              "        const docLink = document.createElement('div');\n",
+              "        docLink.innerHTML = docLinkHtml;\n",
+              "        element.appendChild(docLink);\n",
+              "      }\n",
+              "    </script>\n",
+              "  </div>\n",
+              "\n",
+              "\n",
+              "    </div>\n",
+              "  </div>\n"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "dataframe",
+              "summary": "{\n  \"name\": \"df_clean\",\n  \"rows\": 8,\n  \"fields\": [\n    {\n      \"column\": \"date\",\n      \"properties\": {\n        \"dtype\": \"date\",\n        \"min\": \"1970-01-01 00:00:00.000004887\",\n        \"max\": \"2020-02-25 00:00:00\",\n        \"num_unique_values\": 7,\n        \"samples\": [\n          \"4887\",\n          \"2019-01-28 10:29:05.856353536\",\n          \"2019-08-11 00:00:00\"\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"score\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 1706.5933985345757,\n        \"min\": 0.0,\n        \"max\": 4887.0,\n        \"num_unique_values\": 8,\n        \"samples\": [\n          74.37282586453857,\n          92.0,\n          4887.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_out\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 1711.923170136756,\n        \"min\": 4.28337310850414,\n        \"max\": 4887.0,\n        \"num_unique_values\": 8,\n        \"samples\": [\n          52.90726026872701,\n          73.079265873015,\n          4887.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"t_unit\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 1705.5147723111293,\n        \"min\": 2.608969240419225,\n        \"max\": 4887.0,\n        \"num_unique_values\": 8,\n        \"samples\": [\n          74.17269751981581,\n          76.06359126984135,\n          4887.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    },\n    {\n      \"column\": \"hvac\",\n      \"properties\": {\n        \"dtype\": \"number\",\n        \"std\": 1689.7157783131129,\n        \"min\": 0.0,\n        \"max\": 4887.0,\n        \"num_unique_values\": 8,\n        \"samples\": [\n          81.74186003330834,\n          110.48770875,\n          4887.0\n        ],\n        \"semantic_type\": \"\",\n        \"description\": \"\"\n      }\n    }\n  ]\n}"
+            }
+          },
+          "metadata": {},
+          "execution_count": 70
+        }
+      ],
+      "source": [
+        "# your code here\n",
+        "df_clean.describe()"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "7pjtPQ_tQk7M"
+      },
+      "source": [
+        "+ Save your cleaned dataset in a csv file using ``df_clean.to_csv``. Use the name ``temperature_clean.csv``."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 71,
+      "metadata": {
+        "id": "f3TEvuDaQk7M"
+      },
+      "outputs": [],
+      "source": [
+        "# your code here\n",
+        "df_clean.to_csv(\"temperature_clean.csv\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "yR60zahHQk7M"
+      },
+      "source": [
+        "+ Save the cleanded data set in an Microsoft Excel format. Look at [pandas.DataFrame](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) for the right function. Call the file ``temperature_clean.xlsx``."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 72,
+      "metadata": {
+        "id": "cPN30CxzQk7N"
+      },
+      "outputs": [],
+      "source": [
+        "# your code here\n",
+        "df_clean.to_excel(\"temperature_clean.xlsx\")"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "MJK3_Y8MQk7N"
+      },
+      "source": [
+        "+ Download the the newly created ``temperature_clean.xlsx`` file to your computer and open it up. There is no need to show something here. Just do it for your own education. If you are running the Jupyter notebook on your own computer, then there is nothing to do apart from finding the file. If you are working on Google Colab, see [this](https://stackoverflow.com/questions/48774285/how-to-download-file-created-in-colaboratory-workspace)."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "qep4rGKVQk7N"
+      },
+      "source": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.11.4"
+    },
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
